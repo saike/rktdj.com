@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+
+  </title>
+  <script type="text/javascript" src="js/porthole.min.js"></script>
+  <script>
+    var windowProxy;
+    window.onload = function(){
+      // Create a proxy window to send to and receive
+      // messages from the parent
+      windowProxy = new Porthole.WindowProxy('');
+
+      // Register an event handler to receive messages;
+      windowProxy.addEventListener(function(event) {
+        // handle event
+      });
+
+      windowProxy.post({'login': 'success'});
+    };
+
+    console.dir(window.parent.document);
+  </script>
+</head>
+<body>
+  HELLO I AM FROM RKTDJ.COM
+</body>
+</html>

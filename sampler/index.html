@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>VK SAMPLER - PLAY YOUR F*CKED MUSIC</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    <link rel="stylesheet" href="css/layout.css"/>
+</head>
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="header">
+    <div class="left">
+        <div class="version">v0.0.5</div>
+        <!-- vk_api_transport необходим для работы с Open API  -->
+        <div id="vk_api_transport"></div>
+        <!-- кнопка входа  -->
+        <a href="#" id="vk_login" onclick="loginOpenAPI()">Login</a>
+        <!-- блок, в котором будет выводиться информация о пользователе  -->
+        <div id="userinfo">
+            <a href="#" id="openapi_userlink"><img src="" id="openapi_userphoto" alt="img" /></a>
+        </div>
+        <!-- ссылка для выхода  -->
+        <div id="logout"><a href="#" onclick="doLogout()">Logout</a></div>
+        <!--<a href="http://flapps.ru/forum">Форум Вконтакте API</a>-->
+        <input type="checkbox" id="offlineModer" onchange="VKSAMPLER.setOffline(this)"/><label for="offlineModer">Offline</label>
+    </div>
+    <div class="right">
+
+        <audio id="player" src=""></audio>
+        <div style="display: inline-block; margin: 0 0 0 8px; vertical-align: bottom; height: 30px;">
+            <input id="setContinue" type="checkbox" onchange="VKSAMPLER.setContinuePlay(this)"/>
+            <label for="setContinue">Stop after keyUp?</label>
+        </div>
+        <div style="display: inline-block; margin: 0 0 0 8px; vertical-align: bottom; height: 30px;">
+            <input id="playOnNext" type="checkbox"/>
+            <label for="playOnNext">Start on load?</label>
+        </div>
+        <br/>
+        <div style="margin-left: 40px; margin-top: 8px;">Wait before track will be loaded FULL!!</div>
+        <div style="margin-top: 16px;" class="fb-like" data-href="http://rktdj.com/sampler" data-width="60" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+    </div>
+    <div class="help_button" onclick="toggleHelp()">?</div>
+</div>
+
+<div class="wrapper">
+   <div class="search_form">
+
+       <span>What to search?</span>
+       <input type="text" name="search_query" size="30"/>
+       <input type="text" name="search_count" size="5" value="5"/>
+       <button id="searchBtn" type="button" onclick="getAudio()">And what?</button>
+       <input style="margin-left: 8px;" type="file" id="loadFiles" multiple/>
+   </div>
+    <div class="help" id="help">
+
+        <p>First, you need to click on "Login" in the upper right corner</p>
+        <p>and allow access to audio</p><br/>
+        <p>In the search bar that appears: in the first field, enter what to look for,
+            second - how much to show (default: 5 tracks)</p>
+        <br/>
+        <p>You can also load tracks from a computer (wav or mp3) - click on: <strong>choose file</strong></p>
+
+        <h3>Click on the downloaded track - wait until fully loaded!</h3>
+        <br/>
+        <p>If not loaded or loaded on half - click on another, before load fully</p>
+        <br/>
+        <p>On letter-keys, samples binds automatically</p>
+        <p>To bind samples on number-keys, press: <strong>SHIFT+number</strong> while playing the track</p>
+        <br/>
+        <p>Checkbox <strong>"Stop after keyUp?"</strong> turns on a stopping track after key is released</p>
+        <br/>
+        <p><strong>SPACE</strong> play or pause the track</p><br/>
+        <p><strong>ENTER</strong> load random track from playlist</p>
+        <br/>
+        <h4>PRESS the buttons and ENJOY!!!</h4>
+    </div>
+   <div id="track_list"></div>
+</div>
+<script src="js/openapi_lib.js" charset="windows-1251"></script>
+<script src="js/openapi_code.js" charset="windows-1251"></script>
+</body>
+
+</html>
